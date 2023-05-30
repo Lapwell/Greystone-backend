@@ -1,11 +1,11 @@
-// import './globals.css'
+import './globals.css'
 import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Codeninjas Ninja Database',
-  description: 'Built by Byron w/ Next.js, Mantine and Supabase',
+  title: 'Sensei Notes',
+  description: 'Built by Byron.C & Eni.A w/ Next.js, Mantine and Supabase',
 }
 
 export default function RootLayout({

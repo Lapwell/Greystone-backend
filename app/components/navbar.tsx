@@ -1,16 +1,45 @@
 "use client"
-import { Navbar, Center, Image } from "@mantine/core";
-import SubmitNote from "./submit_note";
-import GetNote from "./get_note";
+import { Navbar, Flex, Button, BackgroundImage } from "@mantine/core";
+import Link from "next/link";
 
 export default function TheNavbar() {
     return (
-        <Navbar height={200} width={{base: '100%'}}>
-            <Center>
-                <Navbar.Section><Image maw="auto" mx="auto" src="/code-ninjas-logo.png" alt="Codeninjas Logo" withPlaceholder/></Navbar.Section>
-                <Navbar.Section><SubmitNote/></Navbar.Section>
-                <Navbar.Section><GetNote/></Navbar.Section>
-            </Center>
-        </Navbar>
-    )
+      <Navbar
+        height={80}
+        width={{ base: "100%" }}
+        style={{ alignContent: "center", paddingTop: "2vh", backgroundColor: "blue" }}
+      >
+        <Flex
+          justify={"center"}
+          align={"flex-start"}
+          direction={"row"}
+          gap={"md"}
+        >
+          <Navbar.Section>
+            <Button
+              variant="outline"
+              component={Link}
+              href="/getNotes"
+            >
+              Get Notes
+            </Button>
+          </Navbar.Section>
+          <BackgroundImage
+            component={Link}
+            href="/"
+            src="/code-ninjas-logo.png/"
+            style={{ width: 180, height: "100%" }}
+          />
+          <Navbar.Section>
+            <Button
+              variant="outline"
+              component={Link}
+              href="/submitNotes"
+            >
+              Submit Notes
+            </Button>
+          </Navbar.Section>
+        </Flex>
+      </Navbar>
+    );
 }
