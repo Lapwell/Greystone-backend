@@ -1,8 +1,9 @@
 "use client";
-import { Flex, Text, Textarea, Group, Button, MantineProvider, Space } from "@mantine/core";
+import { MantineProvider, Flex, Textarea, Group, Button, Space } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { DateInput } from "@mantine/dates";
 import TheNavbar from "../components/navbar";
+
 
 const SubmitNotes = () => {
   const submitNoteForm = useForm({

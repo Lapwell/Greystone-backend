@@ -1,21 +1,17 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
+import type { Metadata } from "next";
 
-const inter = Inter({ subsets: ['latin'] })
+// These styles apply to every route in the application
+import "./globals.css";
 
-export const metadata = {
-  title: 'Sensei Notes',
-  description: 'Built by Byron.C & Eni.A w/ Next.js, Mantine and Supabase',
-}
+export const metadata: Metadata = {
+  title: "Sensei Notes",
+  description: "Made by Byron.C and Eni.A with Nextjs, Mantine and Supabase",
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
-  )
+  );
 }

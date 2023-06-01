@@ -2,12 +2,13 @@
 import { Flex, Textarea, Group, Button, MantineProvider, Space } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { DateInput } from "@mantine/dates";
-import { GetSenseiNote } from "../components/database_interface";
 import { useState, useEffect } from "react";
 import TheNavbar from "../components/navbar";
+import DisplayAPIData from "../components/display_api_data";
+import { loadAPIData } from "../components/database_api";
 
 const GetNotes = () => {
-  const [note, setNote] = useState("");
+  const [noteData, setNoteData] = useState<any>();
   const getNoteForm = useForm({
     initialValues: {
       name: "",
@@ -17,6 +18,13 @@ const GetNotes = () => {
       name: (value) => (value.length <= 0 ? "Name Required" : null),
     },
   });
+
+  useEffect(() => {
+    async function handleAsync() {
+      setNoteData(loadAPIData(noteData));
+    }
+    handleAsync();
+  }, [noteData]);
 
   return (
     <MantineProvider>
@@ -28,6 +36,7 @@ const GetNotes = () => {
         direction={"column"}
         gap={"xl"}
       >
+        {/* {getNoteForm.onSubmit((values) => getNoteForm.validate())} */}
         <form onSubmit={getNoteForm.onSubmit((values) => getNoteForm.validate())}>
           <Textarea
             label="Ninja's Name"
@@ -43,13 +52,21 @@ const GetNotes = () => {
           />
           <Group position="center">
             <Button
+              className="submitButton"
               type="submit"
               variant="outline"
-              onClick={GetSenseiNote}
             >
               Submit
             </Button>
           </Group>
+          <Flex
+            id="APIElement"
+            justify="center"
+            align="center"
+            style={{ color: "black", backgroundColor: "red" }}
+          >
+            <DisplayAPIData />
+          </Flex>
         </form>
       </Flex>
     </MantineProvider>
