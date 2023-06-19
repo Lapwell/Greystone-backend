@@ -1,6 +1,5 @@
 "use client";
 import { MantineProvider, Flex, Title } from "@mantine/core";
-import TheGlobalStyle from "../components/global_style";
 
 const HomeContent = () => {
   return (

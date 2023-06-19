@@ -1,35 +1,36 @@
 "use client";
 import { Flex, Textarea, Group, Button, MantineProvider, Space } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { DateInput } from "@mantine/dates";
-import { useState, useEffect } from "react";
 import TheNavbar from "../components/navbar";
-import DisplayAPIData from "../components/display_api_data";
-import { loadAPIData } from "../components/database_api";
+import { useRouter } from "next/navigation";
 
+//GetNotes stores the form's information that the user will input. It will end up being passed to the session card page.
 const GetNotes = () => {
-  const [noteData, setNoteData] = useState<any>();
-  const getNoteForm = useForm({
+  // const [formStateData, setFormStateData] = useState<any>("");
+  const router = useRouter();
+  const formValues = useForm({
     initialValues: {
       name: "",
-      date: "",
+      // date: "",
     },
     validate: {
-      name: (value) => (value.length <= 0 ? "Name Required" : null),
+      name: (value): any => {
+        value.length <= 0 ? "Name Required" : null;
+      },
     },
   });
 
-  useEffect(() => {
-    async function handleAsync() {
-      setNoteData(loadAPIData(noteData));
+  //This guy, when called, will send the user to the sessian card page
+  const handleClick = (formValues: any, href: any) => {
+    if (formValues.name !== "") {
+      router.push(href);
     }
-    handleAsync();
-  }, [noteData]);
+  };
 
   return (
     <MantineProvider>
       <TheNavbar />
-      <Space h={"4vh"} />
+      <Space h={"20vh"} />
       <Flex
         justify={"flex-start"}
         align={"center"}
@@ -37,36 +38,24 @@ const GetNotes = () => {
         gap={"xl"}
       >
         {/* {getNoteForm.onSubmit((values) => getNoteForm.validate())} */}
-        <form onSubmit={getNoteForm.onSubmit((values) => getNoteForm.validate())}>
+        <form onSubmit={formValues.onSubmit((values) => (formValues.setValues(values), formValues.validate()))}>
           <Textarea
             label="Ninja's Name"
             placeholder="Example: Byron.C"
             withAsterisk
-            {...getNoteForm.getInputProps("name")}
+            {...formValues.getInputProps("name")}
           />
-          <DateInput
-            valueFormat="YYYY, MMM, DD"
-            label="Date"
-            placeholder="Optional"
-            {...getNoteForm.getInputProps("date")}
-          />
+          <Space h={"8vh"} />
           <Group position="center">
             <Button
               className="submitButton"
               type="submit"
               variant="outline"
+              onClick={() => handleClick(formValues.values, `getNotes/sessionCards?ninjaName=${formValues.values.name}`)}
             >
               Submit
             </Button>
           </Group>
-          <Flex
-            id="APIElement"
-            justify="center"
-            align="center"
-            style={{ color: "black", backgroundColor: "red" }}
-          >
-            <DisplayAPIData />
-          </Flex>
         </form>
       </Flex>
     </MantineProvider>
