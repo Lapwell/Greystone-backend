@@ -1,13 +1,14 @@
 "use client";
-
 import { MantineProvider, Flex, Group, Space, Text, Image } from "@mantine/core";
 import TheNavbar from "@/app/components/navbar";
 import { useSearchParams } from "next/navigation";
+import { WhiteBeltCard } from "@/app/components/sessionCards";
 import DisplayAPIData from "@/app/components/display_api_data";
 
 export default function Page() {
   const searchParams: any = useSearchParams();
-  const ninjaName = searchParams.get("ninjaName");
+  let ninjaName = searchParams.get("ninjaName");
+  ninjaName = ninjaName.toLowerCase();
   return (
     <MantineProvider
       theme={{
@@ -25,8 +26,7 @@ export default function Page() {
       <TheNavbar />
       <Space h="8vh" />
       <Group>
-        <p>{ninjaName}</p>
-        <DisplayAPIData ninjaName={ninjaName} />
+        <WhiteBeltCard />
       </Group>
     </MantineProvider>
   );

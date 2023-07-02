@@ -5,7 +5,7 @@ import TheNavbar from "../components/navbar";
 import { useRouter } from "next/navigation";
 
 //GetNotes stores the form's information that the user will input. It will end up being passed to the session card page.
-const GetNotes = () => {
+export default function GetNotes() {
   // const [formStateData, setFormStateData] = useState<any>("");
   const router = useRouter();
   const formValues = useForm({
@@ -61,5 +61,3 @@ const GetNotes = () => {
     </MantineProvider>
   );
 };
-
-export default GetNotes;
