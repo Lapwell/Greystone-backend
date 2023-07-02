@@ -12,3 +12,12 @@ A website made for Code Ninjas Westshore to provide easy access to client progre
 
 Run ``npm install`` in root to install dependencies.
 Run ``npm run dev`` in root to start server.
+
+## Packages
+
+- Next.js
+- Mantine
+- Supabase
+
+## Credits
+@Lapwell & @
