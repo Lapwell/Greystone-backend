@@ -21,4 +21,4 @@ Run ``npm run dev`` in root to start server.
 - Tabler Icons
 
 ## Credits
-@Byron.C & @
+@Lapwell
