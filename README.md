@@ -18,6 +18,7 @@ Run ``npm run dev`` in root to start server.
 - Next.js
 - Mantine
 - Supabase
+- Tabler Icons
 
 ## Credits
 @Lapwell & @
