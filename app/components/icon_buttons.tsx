@@ -1,12 +1,15 @@
-import { UnstyledButton, Popover, Text } from "@mantine/core";
-import { IconTool, IconTrophy, IconPlanet, IconSchool, IconBug } from "@tabler/icons-react";
+import { Popover, UnstyledButton, Text } from "@mantine/core";
+import { IconTool, IconPlanet, IconBug, IconTrophy } from "@tabler/icons-react";
 
-export function getToolIcon(color: string, size: number, status: string, note: string) {
+const popover_width = 200;
+
+export function GetBuildIcon({ color, size, status, note }: any) {
   return (
     <Popover
-      width={100}
+      width={popover_width}
       position="top"
       shadow="md"
+      zIndex={12}
     >
       <Popover.Target>
         <UnstyledButton>
@@ -14,7 +17,6 @@ export function getToolIcon(color: string, size: number, status: string, note: s
             color={color}
             size={size}
           />
-          <Text>anda</Text>
         </UnstyledButton>
       </Popover.Target>
       <Popover.Dropdown>
@@ -23,43 +25,69 @@ export function getToolIcon(color: string, size: number, status: string, note: s
     </Popover>
   );
 }
-export function getSchoolIcon(color: string, size: number) {
+
+export function GetExploreIcon({ color, size, status, note }: any) {
   return (
-    <UnstyledButton>
-      <IconSchool
-        color={color}
-        size={size}
-      />
-    </UnstyledButton>
+    <Popover
+      width={popover_width}
+      position="top"
+      shadow="md"
+    >
+      <Popover.Target>
+        <UnstyledButton>
+          <IconPlanet
+            color={color}
+            size={size}
+          />
+        </UnstyledButton>
+      </Popover.Target>
+      <Popover.Dropdown>
+        <Text size="sm">{note}</Text>
+      </Popover.Dropdown>
+    </Popover>
   );
 }
-export function getBugIcon(color: string, size: number) {
+
+export function GetSolveIcon({ color, size, status, note }: any) {
   return (
-    <UnstyledButton>
-      <IconBug
-        color={color}
-        size={size}
-      />
-    </UnstyledButton>
+    <Popover
+      width={popover_width}
+      position="top"
+      shadow="md"
+    >
+      <Popover.Target>
+        <UnstyledButton>
+          <IconBug
+            color={color}
+            size={size}
+          />
+        </UnstyledButton>
+      </Popover.Target>
+      <Popover.Dropdown>
+        <Text size="sm">{note}</Text>
+      </Popover.Dropdown>
+    </Popover>
   );
 }
-export function getTrophyIcon(color: string, size: number) {
+
+export function GetAdventureIcon({ color, size, status, note }: any) {
   return (
-    <UnstyledButton>
-      <IconTrophy
-        color={color}
-        size={size}
-      />
-    </UnstyledButton>
-  );
-}
-export function getPlanetIcon(color: string, size: number) {
-  return (
-    <UnstyledButton>
-      <IconPlanet
-        color={color}
-        size={size}
-      />
-    </UnstyledButton>
+    <Popover
+      width={popover_width}
+      position="top"
+      shadow="md"
+    >
+      <Popover.Target>
+        <UnstyledButton>
+          <IconTrophy
+            color={color}
+            size={size}
+          />
+        </UnstyledButton>
+      </Popover.Target>
+      <Popover.Dropdown>
+        <Text size="sm">{note}</Text>
+      </Popover.Dropdown>
+    </Popover>
   );
 }

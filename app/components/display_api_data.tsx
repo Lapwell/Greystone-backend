@@ -1,7 +1,7 @@
 "use client";
 import { Text, Flex } from "@mantine/core";
 import { useState, useEffect } from "react";
-import { getAPIData } from "./database_api";
+import { getDBData } from "./database_api";
 
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -12,7 +12,7 @@ export default function DisplayAPIData({ ninjaName }: any) {
 
   useEffect(() => {
     const handleAsync = async () => {
-      const freshData = await getAPIData(ninjaName); //Calls a function to acquire the Ninja's data
+      const freshData = await getDBData(ninjaName); //Calls a function to acquire the Ninja's data
       setData(freshData); //Update the useState() with the ninja data
     };
     handleAsync(); //Keep it alive.

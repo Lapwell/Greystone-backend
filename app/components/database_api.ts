@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { resolve } from "path";
 
 const DB_URL: string = process.env.NEXT_PUBLIC_URL!;
 const DB_ANON_KEY: string = process.env.NEXT_PUBLIC_ANON_KEY!;
@@ -9,16 +10,16 @@ interface NinjaData {
   name: string;
   current_belt: any;
   current_activity_id: any;
-  whiteBelt: Array<string> | null | undefined;
-  yellowBelt: Array<string> | null | undefined;
-  orangeBelt: Array<string> | null | undefined;
+  whiteBeltData: Array<string> | null | undefined;
+  yellowBeltData: Array<string> | null | undefined;
+  orangeBeltData: Array<string> | null | undefined;
 }
 
-export async function getAPIData(ninjaName: string) {
+export async function getDBData(ninjaName: string): Promise<any> {
   //Get all the relevant data on a given ninja
+  //Select works like sql's join. Gets the needed data.
+  //Order() orders the tables by a given column.
   const { data, error } = await supabase
-    //Select works like sql's join. Gets the needed data.
-    //Order() orders the tables by a given column.
     .from("Ninjas")
     .select("*, Belts(Levels(Activities(activity_id, activity_name, Notes(note))))")
     .order("activity_id", { foreignTable: "Belts.Levels.Activities", ascending: true })
@@ -34,15 +35,16 @@ export async function getAPIData(ninjaName: string) {
     //Convert the fetched JSON into usable string data for the webpage.
     const parsedData = JSON.parse(JSON.stringify(data));
     //This object stores all the ninja's data
-    console.log("Parsed", parsedData);
     const ninjaData: NinjaData = {
       name: parsedData[0].name,
       current_belt: parsedData[0].Belts.belt_name,
       current_activity_id: parsedData[0].current_activity_id,
-      whiteBelt: parsedData[0].Belts.Levels,
-      yellowBelt: undefined,
-      orangeBelt: undefined,
+      whiteBeltData: parsedData[0].Belts.Levels,
+      yellowBeltData: undefined,
+      orangeBeltData: undefined,
     };
+    // console.log("ninjadata", ninjaData);
     return ninjaData;
   }
 }
+
