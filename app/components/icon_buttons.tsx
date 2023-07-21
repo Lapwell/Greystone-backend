@@ -1,7 +1,7 @@
 import { Popover, UnstyledButton, Text } from "@mantine/core";
 import { IconTool, IconPlanet, IconBug, IconTrophy } from "@tabler/icons-react";
 
-const popover_width = 200;
+const popover_width = 250;
 
 export function GetBuildIcon({ color, size, status, note }: any) {
   return (

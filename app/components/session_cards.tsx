@@ -3,6 +3,7 @@ import * as iconButtons from "./icon_buttons";
 
 function generateActivityButton(activity: any, level: any, le_note: any) {
   const name = activity.activity_name;
+  const size_value = 20;
   const activity_type = name.substring(0, name.indexOf(":"));
   const note: string = le_note != undefined ? le_note.note : "No Notes";
   console.log("generate", note);
@@ -13,7 +14,7 @@ function generateActivityButton(activity: any, level: any, le_note: any) {
           <iconButtons.GetBuildIcon
             key={name}
             color="red"
-            size={12}
+            size={size_value}
             status="w"
             note={note}
           />
@@ -25,7 +26,7 @@ function generateActivityButton(activity: any, level: any, le_note: any) {
           <iconButtons.GetExploreIcon
             key={name}
             color="red"
-            size={12}
+            size={size_value}
             status="w"
             note={note}
           />
@@ -37,7 +38,7 @@ function generateActivityButton(activity: any, level: any, le_note: any) {
           <iconButtons.GetSolveIcon
             key={name}
             color="red"
-            size={12}
+            size={size_value}
             status="w"
             note={note}
           />
@@ -49,7 +50,7 @@ function generateActivityButton(activity: any, level: any, le_note: any) {
           <iconButtons.GetAdventureIcon
             key={name}
             color="red"
-            size={12}
+            size={size_value}
             status="w"
             note={note}
           />
@@ -61,7 +62,7 @@ function generateActivityButton(activity: any, level: any, le_note: any) {
           <iconButtons.GetAdventureIcon
             key={name}
             color="red"
-            size={12}
+            size={size_value}
             status="w"
             note={note}
           />
@@ -94,7 +95,7 @@ export function WhiteBeltCard({ name, all_levels }: any) {
       wrap={"wrap"}
       gap={"md"}
     >
-      {parsed_levels}
+      <Flex>{parsed_levels[0]}</Flex>
     </Flex>
   );
 }

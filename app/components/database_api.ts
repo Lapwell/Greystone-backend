@@ -48,3 +48,4 @@ export async function getDBData(ninjaName: string): Promise<any> {
   }
 }
 
+export async function submitData(ninjaName: string, note: string, date: any) {}

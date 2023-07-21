@@ -3,7 +3,6 @@ import { MantineProvider, createStyles, Space, Container } from "@mantine/core";
 import TheNavbar from "./components/navbar";
 import HomeContent from "./components/home_content";
 
-// const CNColour = ['#0055A5']
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
