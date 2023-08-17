@@ -1,23 +1,32 @@
 "use client";
 import { MantineProvider, Flex, Textarea, Group, Button, Space } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { DateInput } from "@mantine/dates";
 import TheNavbar from "../components/navbar";
-
+import { useRouter } from "next/navigation";
+import { submitNote } from "../components/database_api";
 
 const SubmitNotes = () => {
   const submitNoteForm = useForm({
     initialValues: {
       name: "",
       note: "",
-      date: "",
+      activityName: "",
     },
     validate: {
       name: (value) => (value.length <= 0 || !value.includes(".") ? "Name Required" : null),
       note: (value) => (value.length <= 0 ? "Note Required" : null),
-      date: (value) => (value.length <= 0 ? "Date Required" : null),
+      activityName: (value) => (value.length <= 0 ? "Date Required" : null),
     },
   });
+
+  const router = useRouter();
+
+  const handleClick = (formValues: any, href: any) => {
+    console.log(formValues, href);
+    if (formValues.name !== "") {
+      router.push(href);
+    }
+  };
 
   return (
     <MantineProvider>
@@ -38,20 +47,24 @@ const SubmitNotes = () => {
           />
           <Textarea
             label="Note"
-            placeholder=""
+            placeholder="Note"
             withAsterisk
             {...submitNoteForm.getInputProps("note")}
           />
-          <DateInput
-            valueFormat="YYYY, MMM, DD"
-            label="Input Date"
+          <Textarea
+            label="Activity Name"
+            placeholder="Activity Name"
             withAsterisk
-            {...submitNoteForm.getInputProps("date")}
+            {...submitNoteForm.getInputProps("activityName")}
           />
           <Group position="center">
             <Button
+              className="submitButton"
               type="submit"
               variant="outline"
+              onClick={() =>
+                submitNote(submitNoteForm.values.name, submitNoteForm.values.note, submitNoteForm.values.activityName)
+              }
             >
               Submit
             </Button>

@@ -75,6 +75,7 @@ export function WhiteBeltCard({ name, all_levels }: any) {
   //Loop over each level inside activities param
   let parsed_levels: any[] = [];
   let count = 0;
+  console.log(all_levels);
   for (let i = 0; i < Object.keys(all_levels).length; i++) {
     let current_level = all_levels[i].Activities;
     parsed_levels.push([]);
@@ -86,7 +87,7 @@ export function WhiteBeltCard({ name, all_levels }: any) {
       count++;
     }
   }
-  console.log("Final level", parsed_levels);
+  console.log("Parsed levels", parsed_levels);
   return (
     <Flex
       justify={"flex-start"}
@@ -95,7 +96,7 @@ export function WhiteBeltCard({ name, all_levels }: any) {
       wrap={"wrap"}
       gap={"md"}
     >
-      <Flex>{parsed_levels[0]}</Flex>
+      <Flex>Cyka Blyat</Flex>
     </Flex>
   );
 }

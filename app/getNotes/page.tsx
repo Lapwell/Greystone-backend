@@ -22,6 +22,7 @@ export default function GetNotes() {
 
   //This guy, when called, will send the user to the sessian card page
   const handleClick = (formValues: any, href: any) => {
+    console.log(formValues, href);
     if (formValues.name !== "") {
       router.push(href);
     }
@@ -41,7 +42,7 @@ export default function GetNotes() {
         <form onSubmit={formValues.onSubmit((values) => (formValues.setValues(values), formValues.validate()))}>
           <Textarea
             label="Ninja's Name"
-            placeholder="Example: Byron.C"
+            placeholder="Example: Byron.Corbett"
             withAsterisk
             {...formValues.getInputProps("name")}
           />
@@ -60,4 +61,4 @@ export default function GetNotes() {
       </Flex>
     </MantineProvider>
   );
-};
+}

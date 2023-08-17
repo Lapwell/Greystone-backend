@@ -1,7 +1,7 @@
 "use client";
 import { Text, Flex } from "@mantine/core";
 import { useState, useEffect } from "react";
-import { getDBData } from "./database_api";
+import { getDBData } from "./database_api.js";
 
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
